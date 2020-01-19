@@ -15,6 +15,23 @@
                     @endif
 
                     You are logged in!
+
+                    @can('users-list-1')
+                        <p>users-list-1</p>
+                    @endcan
+                    @can('users-list-2')
+                        <p>users-list-2</p>
+                    @endcan
+                    @can('users-list-3')
+                        <p>users-list-3</p>
+                    @endcan
+                    @can('users-list-4')
+                        <p>users-list-4</p>
+                    @endcan
+                    @can('users-list-5')
+                        <p>users-list-5</p>
+                    @endcan
+
                 </div>
             </div>
         </div>
