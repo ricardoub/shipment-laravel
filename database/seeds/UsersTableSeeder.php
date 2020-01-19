@@ -125,7 +125,7 @@ class UsersTableSeeder extends Seeder
 
         $unitUser = User::create([
             'name'      => 'Unit User',
-            'email'     => 'unit.user@shipment.test',
+            'email'     => 'unit-user@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ]);
