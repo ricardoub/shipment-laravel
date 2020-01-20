@@ -18,5 +18,8 @@ class RolesAndPermissionsSeeder_AdminRoles extends Seeder
         $role = Role::create(['name' => 'system-admin']);
         $role->givePermissionTo(Permission::all());
 
+        $role = Role::create(['name' => 'system-owner']);
+        $role->givePermissionTo(Permission::all());
+
     }
 }
