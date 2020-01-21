@@ -1,11 +1,16 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import 'node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
 
 // Variables
 @import 'variables';
 
+$fa-font-path: "../webfonts";
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
 
-// Font-awesome
-@import 'node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+// custom CSS
+@import 'pageCard';
