@@ -63,7 +63,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 5,
         ]);
-        $systemAdmin->assignRole('system-admin');
+        $systemAdmin->assignRole('SYSTEM III');
     }
 
     private function createSystemManagers()
@@ -75,7 +75,16 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 5,
         ]);
-        $systemOwner->assignRole('system-owner');
+        $systemOwner->assignRole('SYSTEM II');
+
+        $systemOperator = User::create([
+            'name'      => 'System Operator',
+            'email'     => 'system-operator@shipment.test',
+            'password'  => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            'record_scope' => 5,
+        ]);
+        $systemOperator->assignRole('SYSTEM I');
     }
 
     private function createAppManagers()
@@ -87,9 +96,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 4,
         ]);
-        $appPresident->assignRole('users-show');
-        $appPresident->assignRole('users-basic');
-        $appPresident->assignRole('users-manager');
+        $appPresident->assignRole('MANAGER III');
 
         $appDirector = User::create([
             'name'      => 'App Director',
@@ -98,9 +105,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 4,
         ]);
-        $appDirector->assignRole('users-show');
-        $appDirector->assignRole('users-basic');
-        $appDirector->assignRole('users-manager');
+        $appDirector->assignRole('MANAGER II');
 
         $appNationalManager = User::create([
             'name'      => 'App National Manager',
@@ -109,10 +114,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 4,
         ]);
-        $appNationalManager->assignRole('users-show');
-        $appNationalManager->assignRole('users-basic');
-        $appNationalManager->assignRole('users-manager');
-        $appNationalManager->assignRole('users-admin');
+        $appNationalManager->assignRole('MANAGER II');
 
         $appRegionalManager = User::create([
             'name'      => 'App Regional Manager',
@@ -121,10 +123,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 5,
         ]);
-        $appRegionalManager->assignRole('users-show');
-        $appRegionalManager->assignRole('users-basic');
-        $appRegionalManager->assignRole('users-manager');
-        $appRegionalManager->assignRole('users-admin');
+        $appRegionalManager->assignRole('MANAGER I');
 
     }
 
@@ -137,10 +136,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 3,
         ]);
-        $unitSupervisor->assignRole('users-show');
-        $unitSupervisor->assignRole('users-basic');
-        $unitSupervisor->assignRole('users-manager');
-        $unitSupervisor->assignRole('users-admin');
+        $unitSupervisor->assignRole('UNIT III');
 
         $unitBoss = User::create([
             'name'      => 'Unit Boss',
@@ -149,10 +145,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 3,
         ]);
-        $unitBoss->assignRole('users-show');
-        $unitBoss->assignRole('users-basic');
-        $unitBoss->assignRole('users-manager');
-        $unitBoss->assignRole('users-admin');
+        $unitBoss->assignRole('UNIT III');
     }
 
     private function createUnitUsers()
@@ -164,8 +157,7 @@ class UsersTableSeeder extends Seeder
             'created_at'   => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 2,
         ]);
-        $unitAnalist->assignRole('users-show');
-        $unitAnalist->assignRole('users-basic');
+        $unitAnalist->assignRole('UNIT II');
 
         $unitUser = User::create([
             'name'      => 'Unit User',
@@ -174,8 +166,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 1,
         ]);
-        $unitUser->assignRole('users-show');
-        $unitUser->assignRole('users-basic');
+        $unitUser->assignRole('UNIT I');
 
         $unitTrainee = User::create([
             'name'      => 'Unit Trainee',
@@ -184,14 +175,13 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 1,
         ]);
-        $unitTrainee->assignRole('users-show');
+        $unitTrainee->assignRole('TRAINEE');
     }
 
     private function createCommonUsers()
     {
         factory(App\Models\User::class, 200)
             ->create()
-            ->assignRole('users-show')
-            ->assignRole('users-basic');
+            ->assignRole('UNIT I');
     }
 }
