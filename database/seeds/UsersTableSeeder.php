@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
      * 2-group  - only user's work group records
      * 3-unit   - only unit work records, and linked work groups records
      * 4-linked - only binding unit records, and linked unit's records
-     * 5-system - all systems records
+     * 5-all    - all systems records
     */
 
 
@@ -61,7 +61,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'system-admin@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 5,
+            'record_scope' => 'ALL',
         ]);
         $systemAdmin->assignRole('SYSTEM III');
     }
@@ -73,7 +73,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'system-owner@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 5,
+            'record_scope' => 'ALL',
         ]);
         $systemOwner->assignRole('SYSTEM II');
 
@@ -82,7 +82,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'system-operator@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 5,
+            'record_scope' => 'ALL',
         ]);
         $systemOperator->assignRole('SYSTEM I');
     }
@@ -94,7 +94,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'app-president@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 4,
+            'record_scope' => 'ALL',
         ]);
         $appPresident->assignRole('MANAGER III');
 
@@ -103,7 +103,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'app-director@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 4,
+            'record_scope' => 'LINKED',
         ]);
         $appDirector->assignRole('MANAGER II');
 
@@ -112,7 +112,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'app-national-manager@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 4,
+            'record_scope' => 'LINKED',
         ]);
         $appNationalManager->assignRole('MANAGER II');
 
@@ -121,7 +121,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'app-regional-manager@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 5,
+            'record_scope' => 'LINKED',
         ]);
         $appRegionalManager->assignRole('MANAGER I');
 
@@ -134,7 +134,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'unit-supervisor@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 3,
+            'record_scope' => 'UNIT',
         ]);
         $unitSupervisor->assignRole('UNIT III');
 
@@ -143,7 +143,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'unit-boss@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 3,
+            'record_scope' => 'UNIT',
         ]);
         $unitBoss->assignRole('UNIT III');
     }
@@ -155,7 +155,7 @@ class UsersTableSeeder extends Seeder
             'email'        => 'unit-analist@shipment.test',
             'password'     => bcrypt('password'),
             'created_at'   => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 2,
+            'record_scope' => 'UNIT',
         ]);
         $unitAnalist->assignRole('UNIT II');
 
@@ -164,7 +164,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'unit-user@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 1,
+            'record_scope' => 'UNIT',
         ]);
         $unitUser->assignRole('UNIT I');
 
@@ -173,7 +173,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'unit-trainee@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 1,
+            'record_scope' => 'GROUP',
         ]);
         $unitTrainee->assignRole('TRAINEE');
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RoleHasPermissionsSeeder_managerUsers extends Seeder
 {
@@ -11,9 +12,9 @@ class RoleHasPermissionsSeeder_managerUsers extends Seeder
      */
     public function run()
     {
-        $managerIRole   = Role::where('name', 'MANAGER I');
-        $managerIIRole  = Role::where('name', 'MANAGER II');
-        $managerIIIRole = Role::where('name', 'MANAGER III');
+        $managerIRole   = Role::where('name', '=', 'MANAGER I')->first();
+        $managerIIRole  = Role::where('name', '=', 'MANAGER II')->first();
+        $managerIIIRole = Role::where('name', '=', 'MANAGER III')->first();
 
         // USERS functionality permissions
         $managerIRole->givePermissionTo(['USERS list', 'USERS show', 'USERS search']);

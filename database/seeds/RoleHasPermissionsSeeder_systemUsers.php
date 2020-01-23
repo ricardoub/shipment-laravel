@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleHasPermissionsSeeder_systemUsers extends Seeder
 {
@@ -12,9 +14,9 @@ class RoleHasPermissionsSeeder_systemUsers extends Seeder
     public function run()
     {
         //
-        $systemIRole   = Role::where('name', 'SYSTEM I');
-        $systemIIRole  = Role::where('name', 'SYSTEM II');
-        $systemIIIRole = Role::where('name', 'SYSTEM III');
+        $systemIRole   = Role::where('name', '=', 'SYSTEM I')->first();
+        $systemIIRole  = Role::where('name', '=', 'SYSTEM II')->first();
+        $systemIIIRole = Role::where('name', '=', 'SYSTEM III')->first();
 
         // ALL functionalities permissions
         $systemIRole->givePermissionTo(Permission::all());

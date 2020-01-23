@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -37,7 +37,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //dd($request);
+        $validateData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'record_scope' => 'required|numeric',
+        ]);
+
+        $user = User::create($request->except('token'));
+
+        return redirect()->route('users.index')
+            ->with('success','User created successfully.');
+
     }
 
     /**
