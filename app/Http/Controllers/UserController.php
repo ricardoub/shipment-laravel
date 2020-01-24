@@ -43,7 +43,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'record_scope' => 'required|numeric',
+            'record_scope' => 'required',
         ]);
 
         $user = User::create($request->except('token'));
