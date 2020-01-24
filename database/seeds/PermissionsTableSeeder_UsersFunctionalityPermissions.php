@@ -13,14 +13,14 @@ class PermissionsTableSeeder_UsersFunctionalityPermissions extends Seeder
     public function run()
     {
 
-        Permission::create(['name' => 'USERS list']);
-        Permission::create(['name' => 'USERS show']);
-        Permission::create(['name' => 'USERS search']);
-        Permission::create(['name' => 'USERS create']);
-        Permission::create(['name' => 'USERS update']);
-        Permission::create(['name' => 'USERS delete']);
-        Permission::create(['name' => 'USERS activate']);
-        Permission::create(['name' => 'USERS inactivate']);
+        Permission::create(['name' => 'USERS-list']);
+        Permission::create(['name' => 'USERS-show']);
+        Permission::create(['name' => 'USERS-search']);
+        Permission::create(['name' => 'USERS-create']);
+        Permission::create(['name' => 'USERS-update']);
+        Permission::create(['name' => 'USERS-delete']);
+        Permission::create(['name' => 'USERS-activate']);
+        Permission::create(['name' => 'USERS-inactivate']);
 
     }
 }

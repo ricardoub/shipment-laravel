@@ -16,14 +16,14 @@ class RoleHasPermissionsSeeder_unitExpedUsers extends Seeder
         $unitExpedIIRole  = Role::where('name', '=', 'EXPEDITION II')->first();
         $unitExpedIIIRole = Role::where('name', '=', 'EXPEDITION III')->first();
 
-        // USERS functionality permissions
-        $unitExpedIRole->givePermissionTo(['USERS list', 'USERS show', 'USERS search']);
+        // USERS-functionality permissions
+        $unitExpedIRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
 
-        $unitExpedIIRole->givePermissionTo(['USERS list', 'USERS show', 'USERS search']);
-        $unitExpedIIRole->givePermissionTo(['USERS activate','USERS inactivate']);
+        $unitExpedIIRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
+        $unitExpedIIRole->givePermissionTo(['USERS-activate','USERS-inactivate']);
 
-        $unitExpedIIIRole->givePermissionTo(['USERS list', 'USERS show', 'USERS search']);
-        $unitExpedIIIRole->givePermissionTo(['USERS activate','USERS inactivate']);
-        $unitExpedIIIRole->givePermissionTo(['USERS create','USERS update']);
+        $unitExpedIIIRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
+        $unitExpedIIIRole->givePermissionTo(['USERS-activate','USERS-inactivate']);
+        $unitExpedIIIRole->givePermissionTo(['USERS-create','USERS-update']);
     }
 }

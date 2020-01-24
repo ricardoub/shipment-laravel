@@ -25,11 +25,11 @@ class UsersTableSeeder extends Seeder
      * record_scopes:
      *
      * 0-blocked
-     * 1-own    - only own user's records
-     * 2-group  - only user's work group records
-     * 3-unit   - only unit work records, and linked work groups records
-     * 4-linked - only binding unit records, and linked unit's records
-     * 5-all    - all systems records
+     * 1-OWNER  - only own user's records
+     * 2-GROUP  - only user's work group records
+     * 3-UNIT   - only unit work records, and linked work groups records
+     * 4-LINKED - only binding unit records, and linked unit's records
+     * 5-SYSTEM - all systems records
     */
 
 
@@ -61,7 +61,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'system-admin@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'ALL',
+            'record_scope' => 'SYSTEM',
         ]);
         $systemAdmin->assignRole('SYSTEM III');
     }
@@ -73,7 +73,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'system-owner@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'ALL',
+            'record_scope' => 'SYSTEM',
         ]);
         $systemOwner->assignRole('SYSTEM II');
 
@@ -82,7 +82,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'system-operator@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'ALL',
+            'record_scope' => 'SYSTEM',
         ]);
         $systemOperator->assignRole('SYSTEM I');
     }
@@ -94,7 +94,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'app-president@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'ALL',
+            'record_scope' => 'SYSTEM',
         ]);
         $appPresident->assignRole('MANAGER III');
 

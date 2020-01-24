@@ -16,50 +16,49 @@
 
                     You are logged in!
 
-                    @if (Auth::user()->record_scope == 0)
-                        <p>bloqcked</p>
+                    @if (Auth::user()->record_scope == '')
+                        <p>blocked</p>
                     @endif
-                    @if (Auth::user()->record_scope == 1)
-                        <p>scope 1</p>
+                    @if (Auth::user()->record_scope == 'OWNER')
+                        <p>scope: OWNER</p>
                     @endif
-                    @if (Auth::user()->record_scope == 2)
-                        <p>scope 2</p>
+                    @if (Auth::user()->record_scope == 'GROUP')
+                        <p>scope: GROUP</p>
                     @endif
-                    @if (Auth::user()->record_scope == 3)
-                        <p>scope 3</p>
+                    @if (Auth::user()->record_scope == 'UNIT')
+                        <p>scope: UNIT</p>
                     @endif
-                    @if (Auth::user()->record_scope == 4)
-                        <p>scope 4</p>
+                    @if (Auth::user()->record_scope == 'LINKED')
+                        <p>scope: LINKED</p>
                     @endif
-                    @if (Auth::user()->record_scope == 5)
-                        <p>scope 5</p>
+                    @if (Auth::user()->record_scope == 'SYSTEM')
+                        <p>scope: SYSTEM</p>
                     @endif
 
-                    @can('users-list')
-                        <p>users-list</p>
+                    @can('USERS-list')
+                        <p>USERS-list</p>
                     @endcan
-                    @can('users-show')
-                        <p>users-show</p>
+                    @can('USERS-show')
+                        <p>USERS-show</p>
                     @endcan
-                    @can('users-search')
-                        <p>users-search</p>
+                    @can('USERS-search')
+                        <p>USERS-search</p>
                     @endcan
-                    @can('users-activate')
-                        <p>users-activate</p>
+                    @can('USERS-activate')
+                        <p>USERS-activate</p>
                     @endcan
-                    @can('users-inactivate')
-                        <p>users-inactivate</p>
+                    @can('USERS-inactivate')
+                        <p>USERS-inactivate</p>
                     @endcan
-                    @can('users-create')
-                        <p>users-create</p>
+                    @can('USERS-create')
+                        <p>USERS-create</p>
                     @endcan
-                    @can('users-update')
-                        <p>users-update</p>
+                    @can('USERS-update')
+                        <p>USERS-update</p>
                     @endcan
-                    @can('users-delete')
-                        <p>users-delete</p>
+                    @can('USERS-delete')
+                        <p>USERS-delete</p>
                     @endcan
-
                 </div>
             </div>
         </div>

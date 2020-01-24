@@ -70,7 +70,7 @@
                                     <option value="GROUP">{{ __("WORK GROUP records")}}</option>
                                     <option value="UNIT">{{ __("UNIT WORK records")}}</option>
                                     <option value="LINKED">{{ __("LINKED UNITS records")}}</option>
-                                    <option value="ALL">{{ __("ALL system records")}}</option>
+                                    <option value="SYSTEM">{{ __("ALL system records")}}</option>
                                 </select>
 
                                 @error('record_scope')

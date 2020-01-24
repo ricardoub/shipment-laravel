@@ -14,7 +14,7 @@ class RoleHasPermissionsSeeder_auditorUsers extends Seeder
     {
         $auditorRole = Role::where('name', '=', 'AUDITOR')->first();
 
-        // USERS functionality permissions
-        $auditorRole->givePermissionTo(['USERS list', 'USERS show', 'USERS search']);
+        // USERS-functionality permissions
+        $auditorRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
     }
 }

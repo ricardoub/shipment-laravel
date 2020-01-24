@@ -14,7 +14,7 @@ class RoleHasPermissionsSeeder_visitorUsers extends Seeder
     {
         $visitorRole = Role::where('name', '=', 'VISITOR')->first();
 
-        // USERS functionality permissions
-        $visitorRole->givePermissionTo(['USERS list', 'USERS show', 'USERS search']);
+        // USERS-functionality permissions
+        $visitorRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
     }
 }

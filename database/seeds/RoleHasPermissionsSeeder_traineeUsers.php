@@ -14,7 +14,7 @@ class RoleHasPermissionsSeeder_traineeUsers extends Seeder
     {
         $traineeRole = Role::where('name', '=', 'TRAINEE')->first();
 
-        // USERS functionality permissions
-        $traineeRole->givePermissionTo(['USERS list', 'USERS show', 'USERS search']);
+        // USERS-functionality permissions
+        $traineeRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
     }
 }
