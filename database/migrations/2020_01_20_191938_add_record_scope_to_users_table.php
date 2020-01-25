@@ -14,7 +14,7 @@ class AddRecordScopeToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('record_scope')->default('OWNER');
+            $table->string('record_scope', 25)->default('OWNER');
             /**
              * probably coming from the type table
              *

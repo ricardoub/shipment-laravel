@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 use App\User;
 
 class UserController extends Controller
@@ -37,16 +39,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        //dd($request);
         $validateData = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+            'name' => 'required|max:255',
+            'email'=> 'required|email|max:255|unique:users',
             'password' => 'required',
             'record_scope' => 'required',
         ]);
 
-        $user = User::create($request->except('token'));
+        $user = new User($request->except('token'));
+        $user->save();
 
         return redirect()->route('users.index')
             ->with('success','User created successfully.');
@@ -59,9 +60,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('users.show',compact('user'));
     }
 
     /**
@@ -70,9 +71,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        Session::put('editableUser', $user->id);
+
+        return view('users.edit',compact('user'));
     }
 
     /**
@@ -82,9 +85,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|max:255',
+            'email'=> 'required|email|unique:users,email,'.$user->id,
+            'password' => 'required',
+            'record_scope' => 'required',
+        ]);
+
+        $user->update($request->all());
+
+        return redirect()->route('users.index')
+            ->with('success','User updated successfully');
+
     }
 
     /**
@@ -93,8 +107,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index')
+            ->with('success','User deleted successfully.');
     }
 }
