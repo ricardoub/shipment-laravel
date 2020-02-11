@@ -14,14 +14,12 @@ class RoleHasPermissionsSeeder_systemUsers extends Seeder
     public function run()
     {
         //
-        $systemIRole   = Role::where('name', '=', 'SYSTEM I')->first();
-        $systemIIRole  = Role::where('name', '=', 'SYSTEM II')->first();
-        $systemIIIRole = Role::where('name', '=', 'SYSTEM III')->first();
+        $system1Role = Role::where('name', '=', 'SYSTEM OPERATOR')->first();
+        $system2Role = Role::where('name', '=', 'SYSTEM ADMINISTRATOR')->first();
 
         // ALL functionalities permissions
-        $systemIRole->givePermissionTo(Permission::all());
-        $systemIIRole->givePermissionTo(Permission::all());
-        $systemIIIRole->givePermissionTo(Permission::all());
+        $system1Role->givePermissionTo(Permission::all());
+        $system2Role->givePermissionTo(Permission::all());
 
     }
 }

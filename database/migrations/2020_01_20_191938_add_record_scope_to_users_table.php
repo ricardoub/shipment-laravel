@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Enums\ScopeType;
+
 class AddRecordScopeToUsersTable extends Migration
 {
     /**
@@ -14,16 +16,20 @@ class AddRecordScopeToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('record_scope', 25)->default('OWNER');
+            $table->tinyInteger('record_scope')->unsigned()->default(ScopeType::OWN);
+
             /**
-             * probably coming from the type table
+             * from the ScoreType ENUM
              *
-             * 0-blocked
-             * 1-own
-             * 2-group
-             * 3-unit
-             * 4-linked
-             * 5-system
+             *     const BLOCKED = 1;
+             *     const OWN     = 2;
+             *     const GROUP   = 3;
+             *     const UNIT    = 4;
+             *     const LINKED  = 5;
+             *     const MANAGER = 6;
+             *     const COMPANY = 7;
+             *     const AUDITOR = 8;
+             *     const SYSTEM  = 9;
              */
         });
     }

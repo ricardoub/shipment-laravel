@@ -12,9 +12,9 @@ class RoleHasPermissionsSeeder_auditorUsers extends Seeder
      */
     public function run()
     {
-        $auditorRole = Role::where('name', '=', 'AUDITOR')->first();
+        $auditor1Role = Role::where('name', '=', 'SYSTEM AUDITOR')->first();
 
         // USERS-functionality permissions
-        $auditorRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
+        $auditor1Role->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
     }
 }

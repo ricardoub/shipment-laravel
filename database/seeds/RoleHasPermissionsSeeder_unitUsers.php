@@ -12,18 +12,30 @@ class RoleHasPermissionsSeeder_unitUsers extends Seeder
      */
     public function run()
     {
-        $unitIRole   = Role::where('name', '=', 'UNIT I')->first();
-        $unitIIRole  = Role::where('name', '=', 'UNIT II')->first();
-        $unitIIIRole = Role::where('name', '=', 'UNIT III')->first();
+        $unit1Role = Role::where('name', '=', 'UNIT USER')->first();
+        $unit2Role = Role::where('name', '=', 'UNIT OPERATOR')->first();
+        $unit3Role = Role::where('name', '=', 'UNIT BOSS')->first();
+        $unit4Role = Role::where('name', '=', 'UNIT MANAGER')->first();
 
         // USERS-functionality permissions
-        $unitIRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
+        // basic view
+        $unit1Role->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
+        $unit2Role->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
+        $unit3Role->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
+        $unit4Role->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
 
-        $unitIIRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
-        $unitIIRole->givePermissionTo(['USERS-activate','USERS-inactivate']);
+        // user activate
+        $unit1Role->givePermissionTo(['USERS-inactivate']);
+        $unit2Role->givePermissionTo(['USERS-inactivate']);
+        $unit3Role->givePermissionTo(['USERS-activate','USERS-inactivate']);
+        $unit4Role->givePermissionTo(['USERS-activate','USERS-inactivate']);
 
-        $unitIIIRole->givePermissionTo(['USERS-list', 'USERS-show', 'USERS-search']);
-        $unitIIIRole->givePermissionTo(['USERS-activate','USERS-inactivate']);
-        $unitIIIRole->givePermissionTo(['USERS-create','USERS-update']);
+        // user basic CRUD
+        $unit3Role->givePermissionTo(['USERS-create','USERS-update']);
+        $unit4Role->givePermissionTo(['USERS-create','USERS-update']);
+
+        // users delete
+        $unit3Role->givePermissionTo(['USERS-delete']);
+        $unit4Role->givePermissionTo(['USERS-delete']);
     }
 }

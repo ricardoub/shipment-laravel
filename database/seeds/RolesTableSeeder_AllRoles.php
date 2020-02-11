@@ -12,28 +12,24 @@ class RolesTableSeeder_AllRoles extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'VISITOR']);
-        Role::create(['name' => 'AUDITOR']);
-        Role::create(['name' => 'TRAINEE']);
+        Role::create(['name' => 'SYSTEM ADMINISTRATOR']);
+        Role::create(['name' => 'SYSTEM OPERATOR']);
+        Role::create(['name' => 'SYSTEM AUDITOR']);
 
-        Role::create(['name' => 'UNIT I']);
-        Role::create(['name' => 'UNIT II']);
-        Role::create(['name' => 'UNIT III']);
+        Role::create(['name' => 'COMPANY DIRECTOR']);
+        Role::create(['name' => 'COMPANY PRESIDENT']);
+        Role::create(['name' => 'COMPANY MANAGER']);
+        Role::create(['name' => 'COMPANY SUPERVISOR']);
 
-        Role::create(['name' => 'EXPEDITION I']);
-        Role::create(['name' => 'EXPEDITION II']);
-        Role::create(['name' => 'EXPEDITION III']);
+        Role::create(['name' => 'LOGISTIC MANAGER']);
+        Role::create(['name' => 'LOGISTIC BOSS']);
+        Role::create(['name' => 'LOGISTIC OPERATOR']);
+        Role::create(['name' => 'LOGISTIC USER']);
 
-        Role::create(['name' => 'DISTRIBUTION I']);
-        Role::create(['name' => 'DISTRIBUTION II']);
-        Role::create(['name' => 'DISTRIBUTION III']);
+        Role::create(['name' => 'UNIT MANAGER']);
+        Role::create(['name' => 'UNIT BOSS']);
+        Role::create(['name' => 'UNIT OPERATOR']);
+        Role::create(['name' => 'UNIT USER']);
 
-        Role::create(['name' => 'MANAGER I']);
-        Role::create(['name' => 'MANAGER II']);
-        Role::create(['name' => 'MANAGER III']);
-
-        Role::create(['name' => 'SYSTEM I']);
-        Role::create(['name' => 'SYSTEM II']);
-        Role::create(['name' => 'SYSTEM III']);
     }
 }

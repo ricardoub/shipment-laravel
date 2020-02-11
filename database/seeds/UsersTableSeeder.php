@@ -12,24 +12,36 @@ class UsersTableSeeder extends Seeder
      */
 
     /**
-     * system-admin - administrador
-     * president    - presidente
-     * director     - diretor
-     * manager      - gerente
-     * supervisor   - supervisor
-     * boss         - chefe
-     * analyst      - analista
-     * user         - usuário
-     * trainee      - assistente
+     * system roles
+     *
+     * SYSTEM ADMINISTRATOR
+     * SYSTEM OPERATOR
+     * SYSTEM AUDITOR
+     * COMPANY PRESIDENT
+     * COMPANY DIRECTOR
+     * COMPANY MANAGER
+     * COMPANY SUPERVISOR
+     * LOGISTIC MANAGER
+     * LOGISTIC BOSS
+     * LOGISTIC OPERATOR
+     * LOGISTIC USER
+     * UNIT MANAGER
+     * UNIT BOSS
+     * UNIT OPERATOR
+     * UNIT USER
+     *
      *
      * record_scopes:
      *
-     * 0-blocked
-     * 1-OWNER  - only own user's records
-     * 2-GROUP  - only user's work group records
-     * 3-UNIT   - only unit work records, and linked work groups records
-     * 4-LINKED - only binding unit records, and linked unit's records
-     * 5-SYSTEM - all systems records
+     * const BLOCKED = 1;
+     * const OWN     = 2;
+     * const GROUP   = 3;
+     * const UNIT    = 4;
+     * const LINKED  = 5;
+     * const MANAGER = 6;
+     * const COMPANY = 7;
+     * const AUDITOR = 8;
+     * const SYSTEM  = 9;
     */
 
 
@@ -37,19 +49,18 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        // have all the permissions on the entire system
-        // scope: 5-all systems records
         $this->createSystemAdmins();
+        $this->createSystemAuditors();
 
-        // has admin permissions only on the features
-        // scope: 5-all systems records
-        $this->createSystemManagers();
+        $this->createCompanyBoard();
+        $this->createCompanyManagers();
 
-        // has manager permissions on the features
-        // scope: 4-only binding unit records, and linked unit's records
-        $this->createAppManagers();
+        $this->createLogisticManagers();
+        $this->createLogisticOperators();
 
         $this->createUnitManagers();
+        $this->createUnitOperators();
+
         $this->createUnitUsers();
 
     }
@@ -61,103 +72,178 @@ class UsersTableSeeder extends Seeder
             'email'     => 'system-admin@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'SYSTEM',
+            'record_scope' => '9',
         ]);
-        $systemAdmin->assignRole('SYSTEM III');
-    }
+        $systemAdmin->assignRole('SYSTEM ADMINISTRATOR');
 
-    private function createSystemManagers()
-    {
         $systemOwner = User::create([
             'name'      => 'System Owner',
             'email'     => 'system-owner@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'SYSTEM',
+            'record_scope' => '9',
         ]);
-        $systemOwner->assignRole('SYSTEM II');
+        $systemOwner->assignRole('SYSTEM OPERATOR');
 
         $systemOperator = User::create([
             'name'      => 'System Operator',
             'email'     => 'system-operator@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'SYSTEM',
+            'record_scope' => '9',
         ]);
-        $systemOperator->assignRole('SYSTEM I');
+        $systemOperator->assignRole('SYSTEM OPERATOR');
+
     }
 
-    private function createAppManagers()
+    private function createSystemAuditors()
     {
-        $appPresident = User::create([
-            'name'      => 'App President',
-            'email'     => 'app-president@shipment.test',
+        $systemAuditor = User::create([
+            'name'      => 'System Auditor',
+            'email'     => 'system-auditor@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'SYSTEM',
+            'record_scope' => '8',
         ]);
-        $appPresident->assignRole('MANAGER III');
+        $systemAuditor->assignRole('SYSTEM AUDITOR');
+    }
 
-        $appDirector = User::create([
-            'name'      => 'App Director',
-            'email'     => 'app-director@shipment.test',
+    private function createCompanyBoard()
+    {
+        $companyPresident = User::create([
+            'name'      => 'Company President',
+            'email'     => 'company-president@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'LINKED',
+            'record_scope' => '7',
         ]);
-        $appDirector->assignRole('MANAGER II');
+        $companyPresident->assignRole('COMPANY PRESIDENT');
 
-        $appNationalManager = User::create([
-            'name'      => 'App National Manager',
-            'email'     => 'app-national-manager@shipment.test',
+        $companyDirector = User::create([
+            'name'      => 'Company Director',
+            'email'     => 'company-director@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'LINKED',
+            'record_scope' => '7',
         ]);
-        $appNationalManager->assignRole('MANAGER II');
+        $companyDirector->assignRole('COMPANY DIRECTOR');
 
-        $appRegionalManager = User::create([
-            'name'      => 'App Regional Manager',
-            'email'     => 'app-regional-manager@shipment.test',
+    }
+
+    private function createCompanyManagers()
+    {
+        $companyNationalManager = User::create([
+            'name'      => 'Company National Manager',
+            'email'     => 'company-national-manager@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'LINKED',
+            'record_scope' => '7',
         ]);
-        $appRegionalManager->assignRole('MANAGER I');
+        $companyNationalManager->assignRole('COMPANY MANAGER');
+
+        $companyRegionalManager = User::create([
+            'name'      => 'Company Regional Manager',
+            'email'     => 'company-regional-manager@shipment.test',
+            'password'  => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            'record_scope' => '6',
+        ]);
+        $companyRegionalManager->assignRole('COMPANY MANAGER');
+
+        $companyNationalSupervisor = User::create([
+            'name'      => 'Company National Supervisor',
+            'email'     => 'company-national-supervisor@shipment.test',
+            'password'  => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            'record_scope' => '6',
+        ]);
+        $companyNationalSupervisor->assignRole('COMPANY SUPERVISOR');
+
+        $companyRegionalSupervisor = User::create([
+            'name'      => 'Company Regional Supervisor',
+            'email'     => 'company-regional-supervisor@shipment.test',
+            'password'  => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            'record_scope' => '5',
+        ]);
+        $companyRegionalSupervisor->assignRole('COMPANY SUPERVISOR');
+
+    }
+
+    private function createLogisticManagers()
+    {
+        $logisticManager = User::create([
+            'name'      => 'Logistic Manager',
+            'email'     => 'logistic-manager@shipment.test',
+            'password'  => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            'record_scope' => '5',
+        ]);
+        $logisticManager->assignRole('LOGISTIC MANAGER');
+
+        $logisticBoss = User::create([
+            'name'      => 'Logistic Boss',
+            'email'     => 'logistic-boss@shipment.test',
+            'password'  => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            'record_scope' => '5',
+        ]);
+        $logisticBoss->assignRole('LOGISTIC BOSS');
+    }
+
+    private function createLogisticOperators()
+    {
+        $logisticOperator = User::create([
+            'name'      => 'Logistic Operator',
+            'email'     => 'logistic-operator@shipment.test',
+            'password'  => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            'record_scope' => '5',
+        ]);
+        $logisticOperator->assignRole('LOGISTIC OPERATOR');
+
+        $logisticUser = User::create([
+            'name'      => 'Logistic User',
+            'email'     => 'logistic-user@shipment.test',
+            'password'  => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            'record_scope' => '4',
+        ]);
+        $logisticUser->assignRole('LOGISTIC USER');
 
     }
 
     private function createUnitManagers()
     {
-        $unitSupervisor = User::create([
-            'name'      => 'Unit Supervisor',
-            'email'     => 'unit-supervisor@shipment.test',
+        $unitManager = User::create([
+            'name'      => 'Unit Manager',
+            'email'     => 'unit-manager@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'UNIT',
+            'record_scope' => '4',
         ]);
-        $unitSupervisor->assignRole('UNIT III');
+        $unitManager->assignRole('UNIT MANAGER');
 
         $unitBoss = User::create([
             'name'      => 'Unit Boss',
             'email'     => 'unit-boss@shipment.test',
             'password'  => bcrypt('password'),
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'UNIT',
+            'record_scope' => '4',
         ]);
-        $unitBoss->assignRole('UNIT III');
+        $unitBoss->assignRole('UNIT BOSS');
     }
 
-    private function createUnitUsers()
+    private function createUnitOperators()
     {
-        $unitAnalist = User::create([
-            'name'         => 'Unit Analist',
-            'email'        => 'unit-analist@shipment.test',
+        $unitOperator = User::create([
+            'name'         => 'Unit Operator',
+            'email'        => 'unit-operator@shipment.test',
             'password'     => bcrypt('password'),
             'created_at'   => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'UNIT',
+            'record_scope' => '4',
         ]);
-        $unitAnalist->assignRole('UNIT II');
+        $unitOperator->assignRole('UNIT OPERATOR ');
 
         $unitUser = User::create([
             'name'      => 'Unit User',
@@ -166,22 +252,13 @@ class UsersTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             'record_scope' => 'UNIT',
         ]);
-        $unitUser->assignRole('UNIT I');
-
-        $unitTrainee = User::create([
-            'name'      => 'Unit Trainee',
-            'email'     => 'unit-trainee@shipment.test',
-            'password'  => bcrypt('password'),
-            'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-            'record_scope' => 'GROUP',
-        ]);
-        $unitTrainee->assignRole('TRAINEE');
+        $unitUser->assignRole('UNIT USER');
     }
 
     private function createCommonUsers()
     {
         factory(App\Models\User::class, 200)
             ->create()
-            ->assignRole('UNIT I');
+            ->assignRole('UNIT USER');
     }
 }
