@@ -2,7 +2,7 @@
     <div class="col">
         <table class="table table-sm table-hover">
             <thead class="">
-                <tr class="table-active">
+                <tr class="table-active table__header">
                     <th scope="col" class="col-1 text-center">ID</th>
                     <th scope="col" class="col-4 col-md-2 col-lg-2">Nome</th>
                     <th scope="col" class="col-4 col-md-3 col-lg-3 d-none d-sm-table-cell">Email</th>
