@@ -29,6 +29,7 @@ class UserController extends Controller
         $buttons = $this->getButtons();
         $combos  = $this->getCombos();
         $options = $this->getOptions();
+        $options['page']['footer'] = true;
 
         $users = User::paginate($options['list']['paginated']);
 
@@ -99,6 +100,7 @@ class UserController extends Controller
         $buttons = $this->getButtons();
         $combos  = $this->getCombos();
         $options = $this->getOptions();
+
 
         return view('users.edit', [
             'user'    => $user,
@@ -203,7 +205,7 @@ class UserController extends Controller
          */
         $buttons['backIndex']['name']  = 'Voltar';
         $buttons['backIndex']['link']  = "$this->route.index";
-        $buttons['backIndex']['icon']  = 'fas fa-arrow-left';
+        $buttons['backIndex']['icon']  = 'fas fa-chevron-left';
         $buttons['backIndex']['class'] = 'btn btn-light';
         $buttons['backIndex']['color'] = '';
 
@@ -286,7 +288,7 @@ class UserController extends Controller
     {
         $options['form']['disabled']  = 'disabled';
         $options['list']['paginated'] = 15;
-        $options['page']['footer']    = false;
+        $options['page']['footer'] = false;
 
         return $options;
     }
